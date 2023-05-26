@@ -19,7 +19,7 @@ public:
 	bool search(int rollNo, Node** previous, Node** current);
 	bool deleteNode(int rollNo);
 	bool listEmpty();
-	void traverseO();
+	void traverse();
 	void revtraverse();
 	void hapus();
 	void searchData();
@@ -44,6 +44,7 @@ void DoubleLinkedList::addNode() {
 	if (START == NULL || nim <= START->noMhs) {
 		if (START != NULL && nim == START->noMhs) {
 			cout << "\nDuplicate number not allowed" << endl;
+			return;
 		}
 		newNode->next = START; //step3
 		if (START != NULL)
@@ -82,4 +83,37 @@ bool DoubleLinkedList::search(int rollNo, Node** previous, Node** current) {
 		*current = (*current)->next; //step1.e
 	}
 	return (*current != NULL);
+}
+
+bool DoubleLinkedList::deleteNode(int rollNo) {
+	Node* previous, * current;
+	previous = current = NULL;
+	if (search(rollNo, &previous, &current) == false)
+		return false;
+	if (current->next != NULL)
+		current->next->prev = previous; //step2
+	if (previous != NULL)
+		previous->next = current->next; //step3
+	else
+		START = current->next;
+
+	delete current; //step4
+	return true;
+}
+
+bool DoubleLinkedList::listEmpty() {
+	return (START == NULL);
+}
+
+void DoubleLinkedList::traverse() {
+	if (listEmpty())
+		cout << "\nList is Empty" << endl;
+	else {
+		cout << "\nRecords in ascending order of roll number are:" << endl;
+		Node* currentNode = START;
+		while (currentNode != NULL) {
+			cout << currentNode->noMhs << " " << currentNode->name << endl;
+			currentNode = currentNode ->next;
+		}
+	}
 }
