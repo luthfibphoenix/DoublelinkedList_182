@@ -130,10 +130,12 @@ void DoubleLinkedList::revtraverse() {
 			currentNode = currentNode->next;
 
 		while (currentNode != NULL) {
-			cout << currentNode->noMhs << " " << currentNode-> << endl;
+			cout << currentNode->noMhs << " " << currentNode->prev << endl;
 			currentNode = currentNode->prev;
 		}
 	}
 }
 
-voi
+void DoubleLinkedList::hapus() {
+
+}
