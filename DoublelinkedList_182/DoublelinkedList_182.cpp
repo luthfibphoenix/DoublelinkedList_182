@@ -20,4 +20,7 @@ public:
 	bool deleteNode(int rollNo);
 	bool listEmpty();
 	void traverseO();
+	void revtraverse();
+	void hapus();
+	void searchData();
 };
